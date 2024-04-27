@@ -6,10 +6,15 @@ async def main():
     api = API()
 
     q = "interbank since:2023-01-01 until:2023-05-31"
+    tweets = []
     async for rep in api.search_raw(q, limit=5000):
         # rep is httpx.Response object
-        print(rep.status_code, rep.json())
-        break
+        if rep.status_code == 200:
+            tweets.extend(rep.json())
+        else:
+            print(rep.status_code, rep.json())
+
+
 
 if __name__ == "__main__":
     asyncio.run(main())
