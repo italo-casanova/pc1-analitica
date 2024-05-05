@@ -8,7 +8,7 @@ async def main():
 
     # create a json file to store the tweets
     with open('tweets.json', 'w') as f:
-        q = "backus since:2023-01-01 until:2023-05-31"
+        q = "backus since:2023-01-01 until:2024-05-04"
         tweets = []
         async for rep in api.search_raw(q, limit=5000):
             # rep is httpx.Response object
@@ -19,6 +19,7 @@ async def main():
                 print(rep.status_code, rep.json())
 
         json.dump(tweets, f, indent=4)
+
     # save the tweets list into a file
 
 
